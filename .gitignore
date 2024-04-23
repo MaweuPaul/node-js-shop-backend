@@ -4,6 +4,9 @@ node_modules
 # Environment configuration files
 .env
 
+# Ignore nodemon configuration file
+nodemon.json
+
 # Build output directories
 dist/
 build/
