@@ -8,6 +8,11 @@ node_modules
 dist/
 build/
 
+# images
+  *.jpg
+  *.jpeg
+  *.png
+
 # Logs
 logs/
 *.log
