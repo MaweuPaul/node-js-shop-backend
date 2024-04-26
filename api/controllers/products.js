@@ -24,7 +24,6 @@ exports.products_get_all = (req, res, next) => {
       res.status(201).json(response);
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({ error: err });
     });
 };
@@ -71,7 +70,6 @@ exports.products_delete_product = (req, res, next) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       res.status(500).json({
         error: err,
       });
