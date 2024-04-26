@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+const checkAuth = require('../middleware/check-auth');
 
 router.post('/signup', (req, res, next) => {
   User.findOne({ email: req.body.email })
@@ -91,7 +92,7 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-router.delete('/:userId', (req, res, next) => {
+router.delete('/:userId', checkAuth, (req, res, next) => {
   User.deleteOne({ _id: req.params.userId })
     .exec()
     .then((result) => {

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+const checkAuth = require('../middleware/check-auth');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -57,14 +58,13 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.post('/', upload.single('productImage'), (req, res, next) => {
+router.post('/', checkAuth, upload.single('productImage'), (req, res, next) => {
   // Check if the file was uploaded
   if (!req.file) {
     return res.status(400).json({
       message: 'No file uploaded. Please upload a product image.',
     });
   }
-
   const product = new Product({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
